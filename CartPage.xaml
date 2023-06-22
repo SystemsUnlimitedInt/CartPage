@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="App2.Views.CartPage"
+             BackgroundColor="#646464">
+
+    <StackLayout Orientation="Vertical" Padding="10">
+        <CollectionView x:Name="cartCollectionView" ItemsSource="{Binding Carts}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="1" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Vertical" >
+                        <Frame HasShadow="False" BorderColor="Black"  BackgroundColor="Transparent" CornerRadius="20">
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding ImageUrl}"
+                                           HeightRequest="100"
+                                           WidthRequest="100"/>
+                                    <Label Text="{Binding Name}"
+                                           FontSize="Title"
+                                           VerticalOptions="Center"
+                                           TextColor="#99b4d1"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           Padding="10"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Margin="-10,20,0,-10">
+                                    <Label Text="Woof Bits:" FontSize="15" Margin="10,0,0,0" TextColor="Black"/>
+                                    <Label Text="{Binding Points}" FontSize="15" Margin="0,0,0,0" TextColor="Black"/> 
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Quantity:"
+                                           TextColor="Black"
+                                           VerticalOptions="Center"
+                                           FontSize="Large"
+                                           Margin="0,20,0,0"/>
+                                    <Label Text="{Binding Quantity}"
+                                           FontSize="Large"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           TextColor="Black"
+                                           Margin="0,20,0,0"/>
+
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Total Price:"
+                                           FontSize="Large"
+                                           TextColor="Black"
+                                           VerticalOptions="Center"/>
+                                    <Label Text="{Binding Price}"
+                                           FontSize="Large"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           TextColor="Black"
+                                           Padding="1"
+                                           IsVisible="false"/>
+                                    <Label Text="{Binding TotalPrice}"
+                                           FontSize="Large"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           TextColor="Black"
+                                           Padding="1"/>
+
+                                    <Button ImageSource="bin.png"
+                                            x:Name="btnDelete"
+                                            Command="{Binding Source={x:Reference cartCollectionView}, Path=BindingContext.CartsCommand}" 
+                                            CommandParameter="{Binding .}"                                            
+                                            BackgroundColor="Transparent"
+                                            HorizontalOptions="EndAndExpand"
+                                            Clicked="btnDelete_Clicked"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Order #:"
+                   FontSize="20"
+                   TextColor="Black"/>
+            <Label x:Name="txtOrderNumber"
+                  FontSize="20" 
+                   TextColor="Black"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Total Woof Bits earned:" FontSize="Title" Margin="0,0,0,0" TextColor="Black"/>
+            <Label x:Name="txtPoints" Text="{Binding strPoints}" FontSize="Title" Margin="0,0,0,0" TextColor="Black"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Total Order:" FontSize="Title" TextColor="Black"/>
+            <Label  x:Name="txtTotalOrder" Text="{Binding strTotalOrder}" FontSize="Title" TextColor="Black"/>
+        </StackLayout>
+
+        <RadioButton Content="Collect" Value="Collect" CheckedChanged="RadioButton_CheckedChanged"/>
+
+
+        <RadioButton x:Name="Delivery" Content=""/>
+        <Button Text="Fulfill Your Pets Wishlist"
+                CornerRadius="20"
+                BackgroundColor="Transparent"
+                BorderColor="ForestGreen"
+                BorderWidth="1.5" 
+                Clicked="Button_Clicked" 
+                />
+    </StackLayout>
+</ContentPage>
