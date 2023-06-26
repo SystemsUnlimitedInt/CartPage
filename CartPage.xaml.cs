@@ -1,6 +1,3 @@
-using App2.ViewModels;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +11,7 @@ using MimeKit;
 using MailKit.Net.Smtp;
 using System.Security.Cryptography.X509Certificates;
 using System.ComponentModel;
+using System.Net.Http.Headers;
 
 namespace App2.Views
 {
@@ -26,13 +24,14 @@ namespace App2.Views
         public string strName1 = CartViewModel.strName;
         public decimal TotalOrder { get; set; }
         public decimal Points { get; set; }
-        
-       
+        CartViewModel ViewModel;
+
         public CartPage(CartViewModel viewModels)
         {
             InitializeComponent();
             BindingContext = viewModels;
             BindingContext = new CartViewModel();
+            ViewModel = new CartViewModel();
             ((CartViewModel)BindingContext).LoadCartsCommand.Execute(null);
             ((CartViewModel)BindingContext).LoadTotalsCommand.Execute(null);
 
@@ -66,19 +65,48 @@ namespace App2.Views
             
         }
 
-        private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        public void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
+            //RadioButton r = sender as RadioButton;
+            //if ((string)(r.Content) == "Delivery" && r.IsChecked)
+            //{
 
+            //    ViewModel.TotalOrder += 50;
+            //}
+            //if ((string)(r.Content) == "Collect" && r.IsChecked)
+            //{
+            //    
+
+            //}
+            if (Delivery.IsChecked == true)
+            {
+                ViewModel.TotalOrder += 50;
+            }
+            else
+            {
+                ((CartViewModel)BindingContext).LoadTotalsCommand.Execute(null);
+            }
         }
 
-        private async void btnDelete_Clicked(object sender, EventArgs e)
-        { 
-            ((CartViewModel)BindingContext).LoadTotalsCommand.Execute(null);
-            ((CartViewModel)BindingContext).LoadCartsCommand.Execute(null);
-           
+        //private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        //{
+        //    ((CartViewModel)BindingContext).LoadTotalsCommand.Execute(null);
+        //}
+
+        //private void Delivery_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        //{
+        //    txtTotalOrder.Text = (Convert.ToInt32(txtTotalOrder.Text) + Convert.ToInt32(50)).ToString();
+
+        //}
+
+        //private async void btnDelete_Clicked(object sender, EventArgs e)
+        //{ 
+        //    ((CartViewModel)BindingContext).LoadTotalsCommand.Execute(null);
+        //    ((CartViewModel)BindingContext).LoadCartsCommand.Execute(null);
 
 
-        }
+
+        //}
 
         //private void btnDelete_Clicked(object sender, EventArgs e)
         //{
