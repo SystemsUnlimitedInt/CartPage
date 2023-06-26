@@ -181,7 +181,18 @@ namespace App2.ViewModels
 
 
 
-            mysqlcon.Close();
+            if (mdr.HasRows == false)
+            {
+                strTotalOrder =   Convert.ToString(0);
+                strPoints =  Convert.ToString(0);
+            }
+            else
+            {
+                strTotalOrder = "R" + Convert.ToString(TotalOrder);
+                strPoints = "🐾" + Convert.ToString(Points);
+
+            }
+             mysqlcon.Close();
             strTotalOrder = "R" + Convert.ToString(TotalOrder);
             strPoints = "🐾" + Convert.ToString(Points);
 
