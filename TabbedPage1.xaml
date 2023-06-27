@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:local="clr-namespace:App2.Views"
+            NavigationPage.HasNavigationBar="False"
+            xmlns:viewModels="clr-namespace:App2.ViewModels"
+            xmlns:mainviewModels="clr-namespace:App2.ViewModels"
+            x:Class="App2.TabbedPage1"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            BarBackgroundColor="#087529"
+            SelectedTabColor="Black"
+            UnselectedTabColor="WhiteSmoke"
+            BackgroundColor="#646464">
+
+    <!--Pages can be added as references or inline-->
+    <!--<local:HomePage Title="Home" IconImageSource="Home.png" />-->
+    <NavigationPage Title="Shop" IconImageSource="petshop.png">
+        <x:Arguments>
+            <local:HomePage NavigationPage.TitleIconImageSource="LogoTruckRIght.png">
+                <x:Arguments>
+                    <mainviewModels:MainViewModel/>
+                </x:Arguments>
+            </local:HomePage>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Notifications" IconImageSource="Notification.png">
+        <x:Arguments>
+            <local:Notifications Title="Notifications">
+                <x:Arguments>
+                    <mainviewModels:NotificationViewModel/>
+                </x:Arguments>
+            </local:Notifications>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage  Title="Profile" IconImageSource="Profile.png" >
+        <x:Arguments>
+            <local:ProfilePage Title="Profile Page">
+                <x:Arguments>
+                    <mainviewModels:ProfileViewModel/>
+                </x:Arguments>
+            </local:ProfilePage>
+        </x:Arguments>
+    </NavigationPage>
+    
+   
+    <NavigationPage Title="Cart" IconImageSource="cart.png">
+        <x:Arguments>
+            <local:CartPage Title="Cart">
+                <x:Arguments>
+                    <viewModels:CartViewModel/>
+                </x:Arguments>
+            </local:CartPage>
+        </x:Arguments>
+    </NavigationPage>
+</TabbedPage>
