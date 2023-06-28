@@ -67,56 +67,18 @@ namespace App2.Views
 
         public void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            //RadioButton r = sender as RadioButton;
-            //if ((string)(r.Content) == "Delivery" && r.IsChecked)
-            //{
-
-            //    ViewModel.TotalOrder += 50;
-            //}
-            //if ((string)(r.Content) == "Collect" && r.IsChecked)
-            //{
-            //    
-
-            //}
+            
             if (Delivery.IsChecked == true)
             {
-                ViewModel.TotalOrder += 50;
+                ((CartViewModel)BindingContext).DeliveryCommand.Execute(null);
             }
             else
             {
-                ((CartViewModel)BindingContext).LoadTotalsCommand.Execute(null);
+                ((CartViewModel)BindingContext).CollectCommand.Execute(null);
             }
         }
 
-        //private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        //{
-        //    ((CartViewModel)BindingContext).LoadTotalsCommand.Execute(null);
-        //}
-
-        //private void Delivery_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        //{
-        //    txtTotalOrder.Text = (Convert.ToInt32(txtTotalOrder.Text) + Convert.ToInt32(50)).ToString();
-
-        //}
-
-        //private async void btnDelete_Clicked(object sender, EventArgs e)
-        //{ 
-        //    ((CartViewModel)BindingContext).LoadTotalsCommand.Execute(null);
-        //    ((CartViewModel)BindingContext).LoadCartsCommand.Execute(null);
-
-
-
-        //}
-
-        //private void btnDelete_Clicked(object sender, EventArgs e)
-        //{
-        //    ((CartViewModel)BindingContext).LoadTotalsCommand.Execute(null);
-
-        //    txtPoints.Text = CartViewModel.strPoints;
-        //    txtTotalOrder.Text = CartViewModel.strTotalOrder;
-        //    DisplayAlert("Successful", "Item removed from Cart (▼´•̥ᴥ•̥`) ", "OK");
-        //}
-
+        
 
     }
 }
