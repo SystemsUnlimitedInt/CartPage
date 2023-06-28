@@ -197,7 +197,51 @@ namespace App2.ViewModels
             strPoints = "🐾" + Convert.ToString(Points);
 
         }
+        
+        private ICommand _deliveryCommand;
 
+
+        public ICommand DeliveryCommand
+        {
+            get
+            {
+                if (_deliveryCommand == null)
+                {
+                    _deliveryCommand = new Command(() => LoadDelivery());
+                    OnPropertyChanged();
+                }
+
+                return _deliveryCommand;
+            }
+        }
+
+        public void LoadDelivery()
+        {
+            strTotalOrder = (TotalOrder + Convert.ToDecimal(50)).ToString();
+        }
+
+        private ICommand _collectCommand;
+
+
+        public ICommand CollectCommand
+        {
+            get
+            {
+                if (_collectCommand == null)
+                {
+                    _collectCommand = new Command(() => LoadCollect());
+                    OnPropertyChanged();
+                }
+
+                return _collectCommand;
+            }
+        }
+
+        public void LoadCollect()
+        {
+            strTotalOrder = null;
+            LoadTotalsCommand.Execute(TotalOrder);
+        }
 
 
         private ICommand _cartCommand;
